@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, DateTime
 from sqlalchemy.orm import declarative_base, relationship
 
 
@@ -40,7 +40,7 @@ class Sale(Base):
 
     id = Column(Integer, primary_key=True)
     price = Column(Float, nullable=False)
-    date_sale = Column(String(40), nullable=False)
+    date_sale = Column(DateTime, nullable=False)
     id_stock = Column(Integer, ForeignKey('stock.id'), nullable=False)
     stock = relationship('Stock', back_populates='sale')
     count = Column(Integer, nullable=False)
