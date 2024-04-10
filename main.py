@@ -2,9 +2,16 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from instert_query_from_json import populate_db
 from models import create_tables, Publisher, Shop, Book, Stock, Sale
+import configparser
 
 
-DSN = f'postgresql://postgres:5814@localhost:5432/shop_db'
+config = configparser.ConfigParser()
+config.read("settings.ini")
+username = config["name"]["username"]
+password = config["password"]["password"]
+
+
+DSN = f'postgresql://{username}:{password}@localhost:5432/shop_db'
 engine = sqlalchemy.create_engine(DSN)
 
 
